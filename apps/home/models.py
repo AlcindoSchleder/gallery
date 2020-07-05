@@ -28,7 +28,7 @@ class Categories(models.Model):
 #         Tabela de Imagens                                 #
 # --------------------------------------------------------- #
 class ImagesData(models.Model):
-    image_id = models.AutoField(primary_key=True, verbose_name='Código')
+    pk_images = models.AutoField(primary_key=True, verbose_name='Código')
     fk_user = models.ForeignKey(
         User,
         models.PROTECT,

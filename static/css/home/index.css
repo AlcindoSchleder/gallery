@@ -1,0 +1,39 @@
+/*
+    Theme Name: i-CityDjangoMongo
+    Author: Alcindo Schleder
+    Author URL: https://icity.net.br
+*/
+
+/* Content
+---------------------------------*/
+.main-page {
+    height: 50vh;
+    width: 50vw;
+	font-family: 'Montserrat', sans-serif;
+}
+.decorator-box {
+    background-image: url('../../img/2.png');
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 98vh;
+    width: 45vw;
+    overflow: hidden;
+}
+.decoration-publicity {
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-top: 15vh;
+    margin-left: 5vw;
+    height: auto;
+    width: 80%;
+    -webkit-box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.75);
+    -moz-box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.75);
+    box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.75);
+}
+.text-button {
+    font-size: 0.8rem;
+}
+.text-button:hover {
+    color: #fff;
+    font-weight: bolder;
+}
