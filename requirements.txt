@@ -1,0 +1,9 @@
+asgiref==3.2.7
+Django==3.0.7
+django-datatables-view==1.19.1
+django-static-fontawesome==5.12.1.4
+Pillow==7.2.0
+psycopg2==2.8.5
+python-decouple==3.3
+pytz==2020.1
+sqlparse==0.3.1
