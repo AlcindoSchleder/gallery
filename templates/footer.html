@@ -1,0 +1,26 @@
+{% load static %}
+{% block footer %}
+	<footer class="container">
+		<div class="row">
+			<figure class="footer-logo col-3">
+				<a href="#"><img src="{% static 'img/footer-logo.png' %}" alt=""></a>
+			</figure>
+			<div class="footer-texts col-9">
+				<div class="row text-left">
+					<div class="col-12">
+						<span class="message-title">Mensagem:</span>
+						<span class="message text-warning">{{message}}</span>
+					</div>
+				</div>
+				<div class="row text-right copyright">
+					<div class="credits col-12">
+						Designed by <a href="https://www.icity.net.br">i-City Smart Environments</a>
+					</div>
+					<div class="col-12">
+						&copy; i-City - Todos os direitos reservados
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+{% endblock %}
