@@ -5,33 +5,53 @@
 
     {% block styles %}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" href="{% static 'css/home/index.css' %}" >
+	<link rel="stylesheet" href="{% static 'css/home/index.css' %}?version=2" >
     {% endblock %}
 
     {% block title %}Galeria de Imagens{% endblock %}
 
         {% block content %}
-        <h3 class="text-center">Olá Galeria de Fotos</h3>
-        <div class="main-page">
-            <table class="datatable">
-                <thead>
-                    <th>{% trans "fk_categories" %}</th>
-                    <th>{% trans "pk_images" %}</th>
-                    <th>{% trans "fk_user" %}</th>
-                    <th>{% trans "image_size" %}</th>
-                    <th>{% trans "image_width" %}</th>
-                    <th>{% trans "image_height" %}</th>
-                    <th>{% trans "image_type" %}</th>
-                    <th>{% trans "flag_public" %}</th>
-                    <th>{% trans "thumbnail_image" %}</th>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
+        <section class="main-page">
+            <div class="row">
+                <div class="col-10">
+                    {% if user %}
+                    <h3 class="text-center">Olá {{ user }}, seja bem vindo!</h3>
+                    {% else %}
+                    <h3 class="text-center">Simple Gallery - Welcome</h3>
+                    {% endif %}
+                </div>
+                <div class="col-2">
+                    {% if user %}
+                    <a href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="container">
+                <table class="datatable">
+                    <thead>
+                        <th>{% trans "Ícone" %}</th>
+                        <th>{% trans "Categoria" %}</th>
+                        <th>{% trans "Código" %}</th>
+                        <th>{% trans "Usuário" %}</th>
+                        <th>{% trans "Tamanho" %}</th>
+                        <th>{% trans "Largura" %}</th>
+                        <th>{% trans "Altura" %}</th>
+                        <th>{% trans "Tipo" %}</th>
+                        <th>{% trans "Público" %}</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
         {% endblock %}
 
         {% block scripts %}
         <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        <script type="text/javascript">
+        const DT_PUBLIC_IMAGES = '{% url "home:list_public_images" %}';
+        </script>
         <script src="{% static 'js/home/index.js' %}?version=2" ></script>
         {% endblock %}

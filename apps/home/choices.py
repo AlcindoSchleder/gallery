@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 IMAGE_TYPES_CHOICES = (
-    ('Arquivo jpeg', 'jpg'),
-    ('Arquivo png', 'png'),
-    ('Arquivo bmp', 'bmp')
+    ('jpg', 'Arquivo jpeg'),
+    ('png', 'Arquivo png'),
+    ('bmp', 'Arquivo bmp')
 )

@@ -30,7 +30,7 @@ img {
     max-width: 100%;
 }
 a, a:hover, a:active {
-    outline: 0 !important
+    outline: 0 !important;
 }
 
 /* Primary Styles
@@ -68,9 +68,6 @@ header .row {
 }
 header .row .logo {
     background-color: rgba(255,255,255,0.6);
-    -webkit-box-shadow: 0px 0px 10px 3px rgba(255,255,255,0.9);
-    -moz-box-shadow: 0px 0px 10px 3px rgba(255,255,255,0.9);
-    box-shadow: 0px 0px 10px 3px rgba(255,255,255,0.9);
 }
 header .row .company-name {
     margin-top: 2%;
@@ -84,18 +81,16 @@ header .row .company-name {
 ---------------------------------*/
 /* Main Page */
 .main-page {
-    height: 80vh;
-    width: 100vw;
-    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    height: 80vh !important;
+    width: 100vw !important;
+    background-color: #ebf4fc;
 }
 
 /* Footer
 ---------------------------------*/
 footer {
-    border-top: 1px solid #999;
-    position: fixed;
-    top: 93vh;
-    left: 0;
     display: block;
     height: auto;
     width: 98%;

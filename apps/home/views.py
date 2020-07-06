@@ -32,22 +32,21 @@ class ShowIndexView(TemplateView):
 class ListPublicImagesView(BaseDatatableView):
     model = ImagesData
     columns = [
-        'fk_categories', 'pk_images', 'fk_user', 'image_size', 'image_width',
-        'image_height', 'image_type', 'flag_public', 'thumbnail_image'
+        'thumbnail_image', 'fk_categories', 'pk_images', 'fk_user', 'image_size',
+        'image_width', 'image_height', 'image_type', 'flag_public'
     ]
     order_columns = ['fk_categories', 'fk_user', 'flag_public', 'image_size']
 
-    # def render_column(self, row, column):
-    #     # We want to render user as a custom column
-    #     if column == 'fk_user':
-    #         # escape HTML for security reasons
-    #         user = row.fk_user
-    #         return escape(f'{user.firstname} {user.lastname}')
-    #     elif column == 'fk_categories':
-    #         return escape(row.fk_categoty.dsc_cat)
-    #     else:
-    #         return super(ListPublicImagesView, self).render_column(row, column)
-    #
+    def render_column(self, row, column):
+        # We want to render thumbnail_image as a custom column
+        if column == 'thumbnail_image':
+            if row.thumbnail_image:
+                return escape(row.thumbnail_image.url)
+            else:
+                return escape('static/logo.png')
+        else:
+            return super(ListPublicImagesView, self).render_column(row, column)
+
     # def get_initial_queryset(self):
     #     if self.request.user.is_authenticated:
     #         user = self.request.user
