@@ -7,3 +7,9 @@ Para instalar a aplicaćão basta instalar docker & docker-composer e rodar com 
 ```
 docker-composer run gallery
 ```
+
+### Requisitos
+
+- Postgresql 12
+- python 3.8.3 >
+- psycopg2-binary 2.8.5
