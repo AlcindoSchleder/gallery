@@ -4,6 +4,20 @@
     Author URL: https://icity.net.br
 */
 const IndexEvents = function () {
+    const showModalImage = function(href) {
+        modalObj = $('#modalDetails');
+        target = $('.modal-body').html('<img src="' + href + '" />');
+        $('#modalimageData').html('Detalhes da Imagem');
+        modalObj.modal('show');
+    };
+    const showModalAjax = function(href) {
+        modalObj = $('#modalDetails');
+        target = $('.modal-body');
+        // get ajax data from url that is on href
+
+        // show data
+        modalObj.modal('show');
+    };
     const DocumentsEvents = function () {
         let dt_table = $('.datatable').dataTable({
             language:  {
@@ -23,12 +37,16 @@ const IndexEvents = function () {
                     targets: [0],
                     render: function (data, type, full, meta) {
                         href = data.replace('thumbnail', 'high');
-                        return '<a href="' + href + '" target="_blank"><img src="' + data + '" style="height:50px;width:50px;"/></a>';
+                        return '<a href="javascript:IndexEvents.showImage(\''  + href + '\')"><img class="img-fluid" src="' + data + '" style="height:50px;width:50px;"/></a>';
                     }
                 },
                 {
                     data: 'fk_categories',
-                    targets: [1]
+                    targets: [1],
+                    render: function (data, type, full, meta) {
+                        href = '/category_detail/' + data;
+                        return '<a href="javascript:showAjaxData(' + href + ')">' + data + '</a>';
+                    }
                 },
                 {
                     data: 'pk_images',
@@ -67,11 +85,14 @@ const IndexEvents = function () {
         });
     };
     const redirectPost = function(location, args) {
-    }
+    };
     return {
         //main function to initiate the module
         Init: function () {
             DocumentsEvents();
+        },
+        showImage: function (href) {
+            showModalImage(href)
         }
     };
 }();

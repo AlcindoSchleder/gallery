@@ -47,6 +47,8 @@ class ListPublicImagesView(BaseDatatableView):
                 return escape(row.thumbnail_image.url)
             else:
                 return escape('static/logo.png')
+        elif column == 'fk_categories' and self.request.user.is_authenticated:
+            return escape(f'{row.fk_categories.pk_categories} - {row.fk_categories.dsc_cat}')
         else:
             return super(ListPublicImagesView, self).render_column(row, column)
 
@@ -54,18 +56,23 @@ class ListPublicImagesView(BaseDatatableView):
 class DetailCategoryView(PermissionRequiredMixin, LoginRequiredMixin, BaseFormView):
 
     permission_required = 'finance.transactions'
-    login_url = 'login/'
-    permission_denied_message = 'Você ão tem permissão para esta operação!'
+    login_url = '/login/'
+    permission_denied_message = 'Você não tem permissão para esta operação!'
     template_name = 'home/categories.html'
     form_class = CategoriesForm
 
     def get(self, request, *args, **kwargs):
+        category = None
         try:
             category = Categories.objects.get(pk=kwargs.get('pk', 0))
+            data = {
+                'pk_categories': category.pk_categories,
+                'dsc_cat': category.dsc_cat
+            }
         except ObjectDoesNotExist:
-            category = Categories(pk=0)
-        form = self.form_class(category)
-        render(request, self.template_name, {'form': form})
+            data = None
+        form = self.form_class(data)
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
