@@ -7,7 +7,7 @@ from .models import Categories, ImagesData
 class CategoriesForm(forms.Form):
     pk_categories = forms.IntegerField(
         label='Código', help_text='Código da Categoria',
-        widget=forms.IntegerField(
+        widget=forms.NumberInput(
             attrs={
                 'class': 'form-control form-control-user',
                 'placeholder': 'Código',

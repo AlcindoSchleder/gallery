@@ -8,10 +8,10 @@ from .choices import IMAGE_TYPES_CHOICES
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 
-# --------------------------------------------------------- #
-#         Tabela de Categorias das Imagens                  #
-# --------------------------------------------------------- #
 class Categories(models.Model):
+    """
+    Categories Table - used to classify images
+    """
     pk_categories = models.AutoField(primary_key=True, verbose_name='Código')
     dsc_cat = models.CharField(max_length=50, verbose_name='Descrição')
     insert_date = models.DateTimeField('Data Inserção', auto_now_add=True)
@@ -28,10 +28,12 @@ class Categories(models.Model):
         return f'{str(self.pk_categories)} - {self.dsc_cat}'
 
 
-# --------------------------------------------------------- #
-#         Tabela de Imagens                                 #
-# --------------------------------------------------------- #
 class ImagesData(models.Model):
+    """
+    Images Table - used to store images, thumbnai and all
+    info for image. Image can be propetary of user logged in
+    or public when marked it
+    """
     pk_images = models.AutoField(primary_key=True, verbose_name='Código')
     fk_user = models.ForeignKey(
         User,
@@ -67,9 +69,12 @@ class ImagesData(models.Model):
         return f'{str(self.pk_images)} - {self.dsc_image}'
 
     def create_thumbnail(self):
-        # original code for this method came from
-        # http://snipt.net/danfreak/generate-thumbnails-in-django-with-pil/
-
+        """
+        Modify original image to generate a thumbnail icon
+        original code for this method came from
+        http://snipt.net/danfreak/generate-thumbnails-in-django-with-pil/
+        :return: void
+        """
         # If there is no image associated with this.
         # do not create thumbnail
         if not self.image:
@@ -131,7 +136,20 @@ class ImagesData(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
+        """
+        Call create_thumbnail() function to get complementary info
+        and generate a thumbnail icon
+        then save all data
+
+        :param force_insert: Boolean
+        :param force_update: Boolean
+        :param using: database alias used
+        :param update_fields: Field to update
+        :return: void
+        """
         self.create_thumbnail()
+        # WARNING: Don't modify next 3 code lines.
+        # Without this condition you will cause save event looping
         force_update = False
         # If the instance already has been saved, it has an id and we set
         # force_update to True

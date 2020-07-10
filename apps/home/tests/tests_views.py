@@ -31,3 +31,7 @@ class TestShowIndexPageView(TestCase):
         response = self.client.post('/login/', self.credentials, follow=True)
         self.assertEqual(str(response.context['user']), self.credentials['username'])
         self.assertTrue(response.context['user'].is_authenticated)
+
+    def test_show_category_form(self):
+        response = self.client.get('category_detail/0')
+        self.assertEqual(response.status_code, 200, 'Show Category Form!')
