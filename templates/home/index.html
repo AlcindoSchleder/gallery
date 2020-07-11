@@ -21,11 +21,35 @@
                     {% endif %}
                 </div>
                 <div class="col-2">
-                    {% if user %}
-                    <a href="{% url 'logout' %}">Logout</a>
-                    {% else %}
-                    <a href="{% url 'login' %}">Login</a>
-                    {% endif %}
+
+                <!-- Example split danger button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info">Gallery</button>
+                    <button type="button" class="btn btn-nfo dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        {% if user %}
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="javascript:IndexEvents.showAjaxData('/category_detail/0', 0)">Nova Categoria</a>
+                        <a class="dropdown-item" href="javascript:IndexEvents.showAjaxData('/category_detail/0', 0)">Nova Imagem</a>
+                        {% else %}
+                        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
             <div class="container">
@@ -51,7 +75,7 @@
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalimageData">Modal title</h5>
+                        <h5 class="modal-title" id="modalTitle">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

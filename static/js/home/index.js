@@ -10,11 +10,26 @@ const IndexEvents = function () {
         $('#modalimageData').html('Detalhes da Imagem');
         modalObj.modal('show');
     };
-    const showModalAjax = function(href) {
+    const showModalAjax = function(href, title) {
         modalObj = $('#modalDetails');
         target = $('.modal-body');
+        $('#modalTitle').html('Detalhes da ' + title);
+//        data = null
         // get ajax data from url that is on href
-
+        $.ajax({
+            type: "GET",
+            url: href,
+//            data: data,
+            success: function(data) {
+                target.html(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                let msg = 'Um erro ocorreu ao chamar a API: status(' + textStatus + ') erro( ' + errorThrown + ')';
+                target.html(msg)
+                console.log('erro....', msg);
+            },
+            dataType: "text"
+        });
         // show data
         modalObj.modal('show');
     };
@@ -44,8 +59,9 @@ const IndexEvents = function () {
                     data: 'fk_categories',
                     targets: [1],
                     render: function (data, type, full, meta) {
-                        href = '/category_detail/' + data;
-                        return '<a href="javascript:showAjaxData(' + href + ')">' + data + '</a>';
+                        let pk = data.substring(0, data.indexOf(' - '));
+                        href = '/category_detail/' + pk;
+                        return '<a href="javascript:IndexEvents.showAjaxData(\'' + href + '\', 0)">' + data + '</a>';
                     }
                 },
                 {
@@ -93,6 +109,13 @@ const IndexEvents = function () {
         },
         showImage: function (href) {
             showModalImage(href)
+        },
+        showAjaxData: function (href, modalType) {
+            let title = 'Categoria';
+            if (modalType == 1) {
+                title = 'Imagem'
+            }
+            showModalAjax(href, title)
         }
     };
 }();

@@ -1,37 +1,54 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block title %}Gallery Login{% endblock %}
 
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
-  
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
-    {% endif %}
-  {% endif %}
-  
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table>
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next }}" />
-  </form>
-  
-  {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Perdi Minha Senha?</a></p>
+{% block content %}
+    <section class="main-page text-center">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="card col-sm-6">
+                <div class="cord-body">
+                    <h2 class="card-title">Identificação do Usuário</h2>
+                    {% if form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                    {% endif %}
+
+                    {% if next %}
+                        {% if user.is_authenticated %}
+                            <p>Your account doesn't have access to this page. To proceed,
+                            please login with an account that has access.</p>
+                        {% else %}
+                            <p>Please login to see this page.</p>
+                        {% endif %}
+                    {% endif %}
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <span class="text-danger small">{{ form.username.errors }}</span>
+                                <span>{{ form.username.label_tag }}</span>{{ form.username }}
+                                <span class="text-success small">{{ form.username.help_text }}</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">`
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <span class="text-danger small">{{ form.password.errors }}</span>
+                                <span>{{ form.password.label_tag }}</span>{{ form.password }}
+                                <span class="text-success small">{{ form.password.help_text }}</span>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-outline-primary" value="login" />
+                    </form>
+
+                    {# Assumes you setup the password_reset view in your URLconf #}
+                    <div class="text-center pt-3">
+                        <a class="small" href="{% url 'password_reset' %}">Perdeu sua Senha?</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </section>
   
 {% endblock %}

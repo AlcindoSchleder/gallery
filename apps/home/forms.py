@@ -6,7 +6,8 @@ from .models import Categories, ImagesData
 
 class CategoriesForm(forms.Form):
     pk_categories = forms.IntegerField(
-        label='Código', help_text='Código da Categoria',
+        label='Código',
+        # help_text='Código da Categoria',
         widget=forms.NumberInput(
             attrs={
                 'class': 'form-control form-control-user',
@@ -17,7 +18,8 @@ class CategoriesForm(forms.Form):
         )
     )
     dsc_cat = forms.CharField(
-        label='Descrição', help_text='Descrição da Categoria',
+        label='Descrição',
+        # help_text='Descrição da Categoria',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control form-control-user',
