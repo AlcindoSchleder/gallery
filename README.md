@@ -12,6 +12,13 @@ alguns pacotes no seu SO, que são:
 2. *PostgresSQL:* versão 11 ou maior;
 3. *Criar Ambiente virtual*;
 
+### Tecnologias utilizadas
+
+- *Django 3.0:* Optei pelo django em vez do Flask por ser uma plataforma mais robusta e segura para I/O de dados, e além de possuir ORM própio sem necessidade de ferramentas de terceiros;
+- *PostgreSQL 12:* Banco de dados relacional para armazenamento de grandes quantidades de dados sem o risco de perda das informações;
+- *JQuery:* Para o frontend optei por usar o ajax pela facilidade e por oferecer maior controle na manipulação do DOM. Ainda aguardo um framework que me ofereça todo o controle dos componentes como o JQuery;
+- *Bootstrap 4:* Framework extremamente versártil com vários componentes e 100% integrado ao JQuery.
+
 ### Instalação da aplicação
 
 ```bash
