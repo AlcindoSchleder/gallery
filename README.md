@@ -34,8 +34,27 @@ django-admin createsuperuser
 Após o último comando você deve digitar o nome do usuário, e-mail e senha.
 Desta forma está apto a fazer o login para acessar a administração do sistema.
 
+### Criar arquivo .env como no exemplo
+```bash
+touch .env
+vim .env
+```
+
+digite estes parâmetros no arquivo .env:
+
+```bash
+DEBUG=True
+SECRET_KEY=Uma_Chave_Secreta_Aqulquer
+ALLOWED_HOSTS=127.0.0.1, .localhost
+DATABASE_NAME=gallerydb
+DATABASE_USER=postgres
+DATABASE_PASS=senha_usuario_pg
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+```
 
 ### Execução local
+
 
 ```bash
 ./manage.py runserver
