@@ -21,53 +21,43 @@
                     {% endif %}
                 </div>
                 <div class="col-2">
-
-                <!-- Example split danger button -->
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info">Gallery</button>
-                    <button type="button" class="btn btn-nfo dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        {% if user %}
-                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:IndexEvents.showAjaxData('/category_detail/0', 0)">Nova Categoria</a>
-                        <a class="dropdown-item" href="javascript:IndexEvents.showAjaxData('/category_detail/0', 0)">Nova Imagem</a>
-                        {% else %}
-                        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                        {% endif %}
+                    <!-- Example split danger button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info">Gallery</button>
+                        <button type="button" class="btn btn-nfo dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            {% if user %}
+                            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:IndexEvents.showAjaxData('category_detail/', 0)">Nova Categoria</a>
+                            <a class="dropdown-item" href="javascript:IndexEvents.showAjaxData('image_detail/', 0)">Nova Imagem</a>
+                            {% else %}
+                            <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-                </div>
             </div>
-            <div class="container">
-                <table class="datatable">
-                    <thead>
-                        <th>{% trans "Ícone" %}</th>
-                        <th>{% trans "Categoria" %}</th>
-                        <th>{% trans "Código" %}</th>
-                        <th>{% trans "Usuário" %}</th>
-                        <th>{% trans "Tamanho" %}</th>
-                        <th>{% trans "Largura" %}</th>
-                        <th>{% trans "Altura" %}</th>
-                        <th>{% trans "Tipo" %}</th>
-                        <th>{% trans "Público" %}</th>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="container">
+                    <table class="datatable">
+                        <thead>
+                            <th>{% trans "Ícone" %}</th>
+                            <th>{% trans "Categoria" %}</th>
+                            <th>{% trans "Código" %}</th>
+                            <th>{% trans "Usuário" %}</th>
+                            <th>{% trans "Tamanho" %}</th>
+                            <th>{% trans "Largura" %}</th>
+                            <th>{% trans "Altura" %}</th>
+                            <th>{% trans "Tipo" %}</th>
+                            <th>{% trans "Público" %}</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
         <!-- Modal -->
@@ -85,7 +75,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btnClose" data-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-primary btnSave" disabled>Salvar Modificações</button>
                     </div>
                 </div>
             </div>

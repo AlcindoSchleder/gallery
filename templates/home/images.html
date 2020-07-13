@@ -1,0 +1,29 @@
+<form id="form-modal" method="post" action="{% url 'home:create_category' %}">
+    {% csrf_token %}
+    <div class="form-group row">`
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <span>{{ form.dsc_cat.label_tag }}</span>{{ form.dsc_cat }}
+        </div>
+    </div>
+    <div class="form-group row">`
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <span>{{ form.fk_categories.label_tag }}</span>{{ form.fk_categories }}
+        </div>
+    </div>
+    <div class="form-group row">`
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <span>{{ form.image.label_tag }}</span>{{ form.image }}
+        </div>
+    </div>
+    <div class="form-group row">`
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <span>{{ form.dsc_image.label_tag }}</span>{{ form.dsc_image }}
+        </div>
+    </div>
+    <div class="form-group row">`
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <span>{{ form.flag_public.label_tag }}</span>{{ form.flag_public }}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btnSave">Salvar Modificações</button>
+</form>

@@ -11,27 +11,50 @@ const IndexEvents = function () {
         modalObj.modal('show');
     };
     const showModalAjax = function(href, title) {
+        const promise = new Promise((resolve, reject) => {
+            modalObj = $('#modalDetails');
+            target = $('.modal-body');
+            $('#modalTitle').html('Detalhes da ' + title);
+            $.ajax({
+                type: "GET",
+                url: href,
+                success: function(data) {
+                    target.html(data);
+                    modalObj.modal('show')
+                    resolve(true)
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    let msg = 'Um erro ocorreu ao chamar a API: status(' + textStatus + ') erro( ' + errorThrown + ')';
+                    target.html(msg)
+                    console.log('erro....', msg);
+                    reject(false)
+                },
+                dataType: "text"
+            });
+        })
+        return promise;
+    };
+    const saveFormData = function(form) {
         modalObj = $('#modalDetails');
         target = $('.modal-body');
-        $('#modalTitle').html('Detalhes da ' + title);
-//        data = null
+        data = form.serialize();
         // get ajax data from url that is on href
         $.ajax({
-            type: "GET",
-            url: href,
-//            data: data,
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: data,
             success: function(data) {
                 target.html(data);
+                console.log('success: ', data);
+                modalObj.modal('hide');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 let msg = 'Um erro ocorreu ao chamar a API: status(' + textStatus + ') erro( ' + errorThrown + ')';
                 target.html(msg)
                 console.log('erro....', msg);
             },
-            dataType: "text"
+            dataType: "json"
         });
-        // show data
-        modalObj.modal('show');
     };
     const DocumentsEvents = function () {
         let dt_table = $('.datatable').dataTable({
@@ -110,12 +133,29 @@ const IndexEvents = function () {
         showImage: function (href) {
             showModalImage(href)
         },
-        showAjaxData: function (href, modalType) {
+        showAjaxData: function (href, modalType, op='opInsert') {
+            let opDsc = 'Criar';
+            if (op == 'opUpdate') {
+                opDsc = 'Editar';
+            };
+            if (op == 'opDelete') {
+                opDsc = 'Excluir';
+            };
             let title = 'Categoria';
             if (modalType == 1) {
-                title = 'Imagem'
-            }
-            showModalAjax(href, title)
+                title = 'Imagem';
+            };
+            title = opDsc + ' ' + title;
+            showModalAjax(href, title).then(res => {
+                return $('#form-modal').on('submit', (e) => {
+                    e.preventDefault();
+                    console.log("form submitted!");  // sanity check
+                    if (modalType == 0)
+                        saveFormData($('#form-modal'));
+                    if (modalType == 1)
+                        saveImage($('#form-modal'));
+                });
+            });
         }
     };
 }();

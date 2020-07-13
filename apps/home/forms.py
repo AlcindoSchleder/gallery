@@ -4,47 +4,36 @@ from commom.utils import Utilities
 from .models import Categories, ImagesData
 
 
-class CategoriesForm(forms.Form):
-    pk_categories = forms.IntegerField(
-        label='Código',
-        # help_text='Código da Categoria',
-        widget=forms.NumberInput(
-            attrs={
-                'class': 'form-control form-control-user',
-                'placeholder': 'Código',
-                'maxlenght': 50,
-                'disabled': True
-            }
-        )
-    )
+class CategoriesForm(forms.ModelForm):
     dsc_cat = forms.CharField(
         label='Descrição',
-        # help_text='Descrição da Categoria',
+        help_text='Descrição da Categoria',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control form-control-user',
                 'placeholder': 'Descrição',
-                'maxlenght': 50,
                 'required': True
             }
         )
     )
 
     def clean(self):
-        self.pk_categories = self.cleaned_data.get('pk_categories')
         self.dsc_cat = self.cleaned_data.get('dsc_cat')
         return self.cleaned_data
 
     class Meta:
         model = Categories
-        fields = ('pk_categories', 'dsc_cat')
+        fields = ('dsc_cat', )
 
 
-class ImagesForm(forms.Form):
+class ImagesForm(forms.ModelForm):
     fk_categories = forms.TypedChoiceField(
-        label='Categoria', help_text='Seleção da Categoria',
+        label='Categoria',
+        help_text='Seleção da Categoria',
         widget=forms.Select(
-            attrs={'class': 'form-control'},
+            attrs={
+                'class': 'form-control'
+            },
         ),
         empty_value='Selecione uma Categoria...',
         choices=Utilities.get_database_choices(

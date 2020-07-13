@@ -1,4 +1,14 @@
-<form>
+<form id="form-modal" method="post" action="{% url 'home:create_category' %}">
     {% csrf_token %}
-    {{ form }}
+    <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <span>{{ form.pk_categories.label_tag }}</span>{{ form.pk_categories }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <span>{{ form.dsc_cat.label_tag }}</span>{{ form.dsc_cat }}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btnSave">Salvar Modificações</button>
 </form>

@@ -1,15 +1,58 @@
 # gallery
 Uma simples aplicação para galeria de imagens com recursos de propriedade e imagens publicas, views em lista ou cards 
 
-### Instalação
+## Configuração e uso
 
-Para instalar a aplicaćão basta instalar docker & docker-composer e rodar com o seguinte comando:
+### Instalação dos programas necessários (sem docker)
+
+Para instalar este aplicativo localmente em uma máquina devemos ter previamente instalados
+alguns pacotes no seu SO, que são:
+
+1. *Python 3.8.x:* ou maior;
+2. *PostgresSQL:* versão 11 ou maior;
+3. *Criar Ambiente virtual*;
+
+### Instalação da aplicação
+
+```bash
+git clone https://github.com/AlcindoSchleder/gallery.git
+cd gallery
+
+python3 -m venv venv
+ 
+pip install -r requirements.txt
+django-admin createsuperuser
 ```
-docker-composer run gallery
+
+Após o último comando você deve digitar o nome do usuário, e-mail e senha.
+Desta forma está apto a fazer o login para acessar a administração do sistema.
+
+
+### Execução local
+
+```bash
+./manage.py runserver
+```
+no browser digite: http://localhost:8000
+para admin: http://localhost:8000/admin
+ 
+### Testes
+
+```bash
+./manage.py tests
 ```
 
-### Requisitos
+### Docker
 
-- Postgresql 12
-- python 3.8.3 >
-- psycopg2-binary 2.8.5
+#### Rodar a imagem pronta (via docker)
+
+Basta usar o docker-compose run para rodar a imagem pronta
+
+```bash
+docker-compose up -d
+```
+
+
+#### Recursos
+
+Utilize o menu Gallery para criar novas categorias e novas imagens ou pela administração da aplicação.
