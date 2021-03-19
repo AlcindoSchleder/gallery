@@ -1,7 +1,7 @@
 asgiref==3.2.7
 backcall==0.2.0
 decorator==4.4.2
-Django==3.0.7
+Django==3.1.6
 django-datatables-view==1.19.1
 django-static-fontawesome==5.12.1.4
 ipython==7.16.1
